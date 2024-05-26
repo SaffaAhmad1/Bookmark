@@ -1,5 +1,45 @@
 var nameInput = document.getElementById("bookmarkName");
 var urlInput = document.getElementById("bookmarkURL");
+var validBtn = document.getElementById("valid-btn");
+var closeElement = document.getElementById("close");
+
+
+
+nameInput.addEventListener('keyup', validName )
+function validName(){
+    var regexName = /^[A-Za-z0-9]{3,}$/
+    if(regexName.test(nameInput.value)){
+        nameInput.classList.add("is-valid")
+        nameInput.classList.remove("is-invalid")
+        return true
+    }else{
+        nameInput.classList.add("is-invalid")
+        nameInput.classList.remove("is-valid")
+        return false
+    }
+}
+
+
+
+urlInput.addEventListener('keyup', validURL )
+function validURL(){
+    var regexURL = (/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g)
+    if(regexURL.test(urlInput.value)){
+        urlInput.classList.add("is-valid")
+        urlInput.classList.remove("is-invalid")
+        return true
+    }else{
+        urlInput.classList.add("is-invalid")
+        urlInput.classList.remove("is-valid")
+        return false
+    }
+}
+
+
+closeElement.addEventListener('click' ,closeModal  )
+function closeModal(){
+    boxModal.style.display = "none"
+}
 
 var bookmarkList = [];
 if(localStorage.getItem("bookmark")){
@@ -8,20 +48,19 @@ if(localStorage.getItem("bookmark")){
 }
 
 function addBookmark(){
-    var bookmark = {
-        name : nameInput.value,
-        url : urlInput.value,
-    }
-    bookmarkList.push(bookmark);
-    localStorage.setItem("bookmark" , JSON.stringify(bookmarkList))
-    validForm()
-    displayBookmark();
-    clearForm();
-}
-
-function validForm(){
-    if(urlInput == ""){
-        document.getElementById("bookmarkURL").style.color = red;
+    if(validName() && validURL()){
+        var bookmark = {
+            name : nameInput.value,
+            url : urlInput.value,
+        }
+        bookmarkList.push(bookmark);
+        localStorage.setItem("bookmark" , JSON.stringify(bookmarkList))
+        displayBookmark();
+        clearForm();
+        nameInput.classList.remove("is-valid")
+        urlInput.classList.remove("is-valid")
+    }else{
+        boxModal.style.display = "flex"
     }
 }
 

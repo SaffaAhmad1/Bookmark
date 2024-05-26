@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     <title>Bookmark</title>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -31,7 +32,7 @@
                     <input type="url" placeholder="Website URL" class="form-control" id="bookmarkURL">
                 </div>
 
-                <button onclick="addBookmark()" class="btn btn-submit px-5">Submit</button>
+                <button onclick="addBookmark()" id="valid-btn" class="btn btn-submit px-5">Submit</button>
             </div>
 
             <table class="table mt-4 text-center table-light align-middle">
@@ -50,6 +51,28 @@
             
         </div>
     </section>
+
+    <div id="boxModal">
+        <div class="box-info bg-white p-4 rounded-2 shadow-lg">
+            <div class="box-header w-100 d-flex justify-content-between align-items-center mb-4">
+                <div class="circle-box d-flex">
+                    <span class="span-1 rounded-circle me-2"></span>
+                    <span class="span-2 rounded-circle me-2"></span>
+                    <span class="span-3 rounded-circle me-2"></span>
+                </div>
+                <button id="close" class="btn border-0">
+                    <i class="fa-solid fa-xmark fs-3"></i>
+                </button>
+            </div>
+            <p class="m-0 pb-2">Site Name or Url is not valid, Please follow the rules below :</p>
+
+            <ul class="rules m-0 list-unstyled ">
+                <li><i class="fa-regular fa-circle-right p-2"></i>Site name must contain at least 3 characters</li>
+                <li><i class="fa-regular fa-circle-right p-2"></i>Site URL must be a valid one</li>
+            </ul>
+
+        </div>
+    </div>
 
 
     
